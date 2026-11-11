@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  push:
+    branches: [main] # feature 브랜치는 PR에서 실행, 태그는 release.yml이 호출
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / ${{ matrix.framework }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            framework: net8.0
+          - os: windows-latest
+            framework: net472
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          # 빌드는 .NET 10 SDK, net8.0 테스트 실행에는 .NET 8 런타임이 필요
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Test
+        run: dotnet test --framework ${{ matrix.framework }}
