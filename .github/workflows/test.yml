@@ -34,3 +34,22 @@ jobs:
 
       - name: Test
         run: dotnet test --framework ${{ matrix.framework }}
+
+  aot:
+    name: ubuntu-latest / native-aot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      # AOT, 트리밍 경고는 프로젝트 설정(TreatWarningsAsErrors)으로 게시 실패가 된다.
+      - name: Publish
+        run: dotnet publish tests/HangulSharp.AotTest --configuration Release --runtime linux-x64 --output aot
+
+      - name: Run
+        run: ./aot/HangulSharp.AotTest
