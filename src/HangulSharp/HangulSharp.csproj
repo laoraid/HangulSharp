@@ -7,6 +7,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- net8.0은 지원 종료됐지만 의도적으로 유지 -->
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Native AOT, 트리밍 호환 표시와 분석기 (.NET 7+ 에서만 지원) -->
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <!-- NuGet 패키지 정보 -->

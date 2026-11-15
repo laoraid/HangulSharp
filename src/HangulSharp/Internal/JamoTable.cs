@@ -49,5 +49,9 @@ internal static class JamoTable
     public const string Jungseong = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ";
     public const string Jongseong = "\0ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ"; // [0] = 받침 없음
 
-    // TODO: 겹받침, 겹모음 매핑 (ㄳ ↔ ㄱㅅ, ㅘ ↔ ㅗㅏ ...)
+    // 두벌식 겹자모: CompoundJamo[i] = CompoundFirst[i] + CompoundSecond[i]
+    // 겹받침 11개 + 복합모음 7개. 쌍자음(ㄲ, ㄸ ...)과 ㅐ, ㅔ, ㅒ, ㅖ는 키 하나라서 포함하지 않는다.
+    public const string CompoundJamo = "ㄳㄵㄶㄺㄻㄼㄽㄾㄿㅀㅄㅘㅙㅚㅝㅞㅟㅢ";
+    public const string CompoundFirst = "ㄱㄴㄴㄹㄹㄹㄹㄹㄹㄹㅂㅗㅗㅗㅜㅜㅜㅡ";
+    public const string CompoundSecond = "ㅅㅈㅎㄱㅁㅂㅅㅌㅍㅎㅅㅏㅐㅣㅓㅔㅣㅣ";
 }

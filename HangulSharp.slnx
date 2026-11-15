@@ -3,6 +3,7 @@
     <Project Path="src/HangulSharp/HangulSharp.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/HangulSharp.AotTest/HangulSharp.AotTest.csproj" />
     <Project Path="tests/HangulSharp.Tests/HangulSharp.Tests.csproj" />
   </Folder>
 </Solution>
